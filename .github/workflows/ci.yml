@@ -46,13 +46,12 @@ jobs:
           previous_folder="$(date +'%Y-%m-%d_%H-%M-%S')"
           mkdir $previous_folder
 
-          cd $previous_folder
           git clone -b gh-pages git@github.com:akankshar05/working_ci.git
+          cp -r ./gh-pages/* ./$previous_folder/*
 
-          cd ..
           git clone -b daily_reports git@github.com:akankshar05/working_ci.git
 
-          cp -r ./$previous_folder ./daily_reports
+          cp -r ./$previous_folder ./daily_reports/
           cd daily_reports
           git add -A
           git commit -m "reports added"
