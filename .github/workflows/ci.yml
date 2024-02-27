@@ -52,7 +52,7 @@ jobs:
       - name: "3"
         run: |
           
-          cp -r ./gh-pages/* ./$previous_folder
+          cp -r ./gh-pages/* ./$previous_folder/
       - name: "4"
         run: |
 
@@ -62,6 +62,8 @@ jobs:
         run: |
 
           cp -r ./$previous_folder ./daily_reports/
+      - name: "5"
+        run: |
           echo "7"
           cd working_ci
           echo "8"
