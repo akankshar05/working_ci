@@ -61,7 +61,7 @@ jobs:
       - name: "5"
         run: |
 
-          cp -r ./$previous_folder ./daily_reports/
+          cp -r $previous_folder daily_reports
       - name: "5"
         run: |
           echo "7"
