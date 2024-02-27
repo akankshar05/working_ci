@@ -47,10 +47,8 @@ jobs:
           mkdir $previous_folder
       - name: "2"
         run: |
-          
-        
-
           git clone -b gh-pages git@github.com:akankshar05/working_ci.git gh-pages
+          ls -a
       - name: "3"
         run: |
           
