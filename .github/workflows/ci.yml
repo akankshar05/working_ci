@@ -47,7 +47,7 @@ jobs:
           cat index.html
       - name: "1"
         run: |
-          previous_folder="$(date +'%Y-%m-%d-%H-%M-%S')"
+          previous_folder="$(date +'%Y-%m-%d')"
           mkdir ${previous_folder}
       - name: "2"
         run: |
@@ -55,6 +55,7 @@ jobs:
           ls -a
       - name: "3"
         run: |
+          previous_folder="$(date +'%Y-%m-%d')"
           echo ${previous_folder}
           
           cp -r ./gh-pages/* ./${previous_folder}/
@@ -68,6 +69,7 @@ jobs:
           ls -a
       - name: "5"
         run: |
+          previous_folder="$(date +'%Y-%m-%d')"
 
           cp -r ${previous_folder} daily_reports
           ls -a
