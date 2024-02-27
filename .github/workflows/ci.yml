@@ -70,7 +70,7 @@ jobs:
       - name: "5"
         run: |
           echo "7"
-          cd working_ci
+          cd daily_reports
           echo "8"
           git add -A
           echo "9"
