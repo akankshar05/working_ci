@@ -44,7 +44,7 @@ jobs:
       - name: "1"
         run: |
           previous_folder="$(date +'%Y-%m-%d')"
-          mkdir $previous_folder
+          mkdir ${previous_folder}
       - name: "2"
         run: |
           git clone -b gh-pages git@github.com:akankshar05/working_ci.git gh-pages
@@ -64,7 +64,7 @@ jobs:
       - name: "5"
         run: |
 
-          cp -r $previous_folder daily_reports
+          cp -r ${previous_folder} daily_reports
       - name: "5"
         run: |
           echo "7"
