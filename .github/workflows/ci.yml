@@ -1,0 +1,58 @@
+name: Build and Deploy
+on: [push]
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        uses: MrSquaare/ssh-setup-action@v1
+        with:
+            host: github.com
+            private-key: ${{ secrets.PRIV_KEY }}
+
+      - name: Set up rudderlabs token for private repos
+        run: git config --global url."https://${{secrets.WHT_TESTS_TOKEN}}:x-oauth-basic@github.com/akankshar05".insteadOf "https://github.com/akankshar05"
+
+
+      # - name: Clone repository
+      #   run: git clone git@github.com:akankshar05/_gh_pages.git
+      - name: Clone repository
+        run: git clone git@github.com:akankshar05/wht.git
+      - name: cd wht
+        run: |
+          cd wht
+          ls -a
+      - name: create dir
+        run: |
+          mkdir _gh_pages
+
+      - name: copy files
+        run: |
+          cp -r ${{ github.workspace }}/wht/samples/profiles-performace-report/output/dev/reports/perf*/* ${{ github.workspace }}/_gh_pages
+          cd _gh_pages
+          ls -a
+      - name: cd _gh_pages
+        run: |
+          cd _gh_pages
+          touch index.html
+          cp performance_report.html index.html 
+          ls -a
+          cat index.html
+
+       
+      - name: nojekyll
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          touch _gh_pages/.nojekyll
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' }}
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: _gh_pages/
+          force_orphan: true
+
+
