@@ -47,12 +47,13 @@ jobs:
           mkdir $previous_folder
 
           git clone -b gh-pages git@github.com:akankshar05/working_ci.git
-          cp -r ./gh-pages/* ./$previous_folder/*
+          cp -r ./working_ci/* ./$previous_folder/*
+          rm -r working_ci
 
           git clone -b daily_reports git@github.com:akankshar05/working_ci.git
 
-          cp -r ./$previous_folder ./daily_reports/
-          cd daily_reports
+          cp -r ./$previous_folder ./working_ci/
+          cd working_ci
           git add -A
           git commit -m "reports added"
           git push
