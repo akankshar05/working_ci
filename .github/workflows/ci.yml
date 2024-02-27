@@ -47,7 +47,7 @@ jobs:
           mkdir $previous_folder
 
           git clone -b gh-pages git@github.com:akankshar05/working_ci.git
-          cp -r ./working_ci/* ./$previous_folder/*
+          cp -r ./working_ci/* ./$previous_folder
           rm -r working_ci
 
           git clone -b daily_reports git@github.com:akankshar05/working_ci.git
