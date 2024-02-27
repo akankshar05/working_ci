@@ -69,7 +69,7 @@ jobs:
           ls -a
       - name: "5"
         run: |
-          previous_folder="$(date +'%Y-%m-%d')"
+          previous_folder="$(date +'%Y-%m-%d-%H-%M-%S')"
 
           cp -r ${previous_folder} daily_reports
           ls -a
