@@ -55,12 +55,11 @@ jobs:
           cp -r ./gh-pages/* ./$previous_folder
       - name: "4"
         run: |
-          echo "4"
-          rm -r working_ci
-          echo "5"
 
           git clone -b daily_reports git@github.com:akankshar05/working_ci.git daily_reports
-          echo "6"
+          ls -a
+      - name: "5"
+        run: |
 
           cp -r ./$previous_folder ./daily_reports/
           echo "7"
