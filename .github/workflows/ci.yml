@@ -41,15 +41,19 @@ jobs:
           cp performance_report.html index.html 
           ls -a
           cat index.html
-      - name: create a dir for prev_repo
+      - name: "1"
         run: |
-          previous_folder="$(date +'%Y-%m-%d_%H-%M-%S')"
-          echo "1"
+          previous_folder="$(date +'%Y-%m-%d')"
           mkdir $previous_folder
-          echo "2"
+      - name: "2"
+        run: |
+          
+        
 
           git clone -b gh-pages git@github.com:akankshar05/working_ci.git
-          echo "3"
+      - name: "3"
+        run: |
+          
           cp -r ./working_ci/* ./$previous_folder
           echo "4"
           rm -r working_ci
