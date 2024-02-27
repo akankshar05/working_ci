@@ -51,8 +51,11 @@ jobs:
           ls -a
       - name: "3"
         run: |
+          echo ${previous_folder}
           
-          cp -r ./gh-pages/* ./$previous_folder/
+          cp -r ./gh-pages/* ./${previous_folder}/
+          cd  ${previous_folder}
+          ls -a
       - name: "4"
         run: |
 
