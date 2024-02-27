@@ -44,19 +44,30 @@ jobs:
       - name: create a dir for prev_repo
         run: |
           previous_folder="$(date +'%Y-%m-%d_%H-%M-%S')"
+          echo "1"
           mkdir $previous_folder
+          echo "2"
 
           git clone -b gh-pages git@github.com:akankshar05/working_ci.git
+          echo "3"
           cp -r ./working_ci/* ./$previous_folder
+          echo "4"
           rm -r working_ci
+          echo "5"
 
           git clone -b daily_reports git@github.com:akankshar05/working_ci.git
+          echo "6"
 
           cp -r ./$previous_folder ./working_ci/
+          echo "7"
           cd working_ci
+          echo "8"
           git add -A
+          echo "9"
           git commit -m "reports added"
+          echo "10"
           git push
+          echo "11"
           
 
        
