@@ -1,103 +1,103 @@
-# name: Build and Deploy
-# on: [push]
-# permissions:
-#   contents: write
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Setup SSH
-#         uses: MrSquaare/ssh-setup-action@v1
-#         with:
-#             host: github.com
-#             private-key: ${{ secrets.PRIV_KEY }}
+name: Build and Deploy
+on: [push]
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        uses: MrSquaare/ssh-setup-action@v1
+        with:
+            host: github.com
+            private-key: ${{ secrets.PRIV_KEY }}
 
-#       - name: Set up rudderlabs token for private repos
+      - name: Set up rudderlabs token for private repos
         
-#         run: |
-#           git config --global user.email "2020ucs0109@iitjammu.ac.in"
-#           git config --global user.name "akankshar05"
-#           git config --global url."https://${{secrets.WHT_TESTS_TOKEN}}:x-oauth-basic@github.com/akankshar05".insteadOf "https://github.com/akankshar05"
+        run: |
+          git config --global user.email "2020ucs0109@iitjammu.ac.in"
+          git config --global user.name "akankshar05"
+          git config --global url."https://${{secrets.WHT_TESTS_TOKEN}}:x-oauth-basic@github.com/akankshar05".insteadOf "https://github.com/akankshar05"
 
 
 
-#       # - name: Clone repository
-#       #   run: git clone git@github.com:akankshar05/_gh_pages.git
-#       - name: Clone repository
-#         run: git clone git@github.com:akankshar05/wht.git
-#       - name: cd wht
-#         run: |
-#           cd wht
-#           ls -a
-#       - name: create dir
-#         run: |
-#           mkdir _gh_pages
+      # - name: Clone repository
+      #   run: git clone git@github.com:akankshar05/_gh_pages.git
+      - name: Clone repository
+        run: git clone git@github.com:akankshar05/wht.git
+      - name: cd wht
+        run: |
+          cd wht
+          ls -a
+      - name: create dir
+        run: |
+          mkdir _gh_pages
 
-#       - name: copy files
-#         run: |
-#           cp -r ${{ github.workspace }}/wht/samples/profiles-performace-report/output/dev/reports/perf*/* ${{ github.workspace }}/_gh_pages
-#           cd _gh_pages
-#           ls -a
-#       - name: cd _gh_pages
-#         run: |
-#           cd _gh_pages
-#           touch index.html
-#           cp performance_report.html index.html 
-#           ls -a
-#           cat index.html
-#       - name: "1"
-#         run: |
-#           previous_folder="$(date +'%Y-%m-%d')"
-#           mkdir ${previous_folder}
-#       - name: "2"
-#         run: |
-#           git clone -b gh-pages git@github.com:akankshar05/working_ci.git gh-pages
-#           ls -a
-#       - name: "3"
-#         run: |
-#           previous_folder="$(date +'%Y-%m-%d')"
-#           echo ${previous_folder}
+      - name: copy files
+        run: |
+          cp -r ${{ github.workspace }}/wht/samples/profiles-performace-report/output/dev/reports/perf*/* ${{ github.workspace }}/_gh_pages
+          cd _gh_pages
+          ls -a
+      - name: cd _gh_pages
+        run: |
+          cd _gh_pages
+          touch index.html
+          cp performance_report.html index.html 
+          ls -a
+          cat index.html
+      - name: "1"
+        run: |
+          previous_folder="$(date +'%Y-%m-%d')"
+          mkdir ${previous_folder}
+      - name: "2"
+        run: |
+          git clone -b gh-pages git@github.com:akankshar05/working_ci.git gh-pages
+          ls -a
+      - name: "3"
+        run: |
+          previous_folder="$(date +'%Y-%m-%d')"
+          echo ${previous_folder}
           
-#           cp -r ./gh-pages/* ./${previous_folder}/
-#           cd  ${previous_folder}
-#           ls -a
-#       - name: "4"
-#         run: |
+          cp -r ./gh-pages/* ./${previous_folder}/
+          cd  ${previous_folder}
+          ls -a
+      - name: "4"
+        run: |
 
-#           git clone -b daily_reports git@github.com:akankshar05/working_ci.git daily_reports
-#           ls -a
-#       - name: "5"
-#         run: |
-#           previous_folder="$(date +'%Y-%m-%d')"
+          git clone -b daily_reports git@github.com:akankshar05/working_ci.git daily_reports
+          ls -a
+      - name: "5"
+        run: |
+          previous_folder="$(date +'%Y-%m-%d')"
 
-#           cp -r ${previous_folder} daily_reports
-#       - name: "5"
-#         run: |
-#           echo "7"
-#           cd daily_reports
-#           echo "7.1"
+          cp -r ${previous_folder} daily_reports
+      - name: "5"
+        run: |
+          echo "7"
+          cd daily_reports
+          echo "7.1"
 
-#           echo "8"
-#           git add -A
-#           echo "9"
-#           git commit -m "reports added"
-#           echo "10"
-#           git push
-#           echo "11"
+          echo "8"
+          git add -A
+          echo "9"
+          git commit -m "reports added"
+          echo "10"
+          git push
+          echo "11"
           
 
        
-#       - name: nojekyll
-#         if: ${{ github.event_name == 'push' }}
-#         run: |
-#           touch _gh_pages/.nojekyll
-#       - name: Deploy
-#         uses: peaceiris/actions-gh-pages@v3
-#         if: ${{ github.event_name == 'push' }}
-#         with:
-#           publish_branch: gh-pages
-#           github_token: ${{ secrets.GH_TOKEN }}
-#           publish_dir: _gh_pages/
-#           force_orphan: true
+      - name: nojekyll
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          touch _gh_pages/.nojekyll
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' }}
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: _gh_pages/
+          force_orphan: true
 
 
