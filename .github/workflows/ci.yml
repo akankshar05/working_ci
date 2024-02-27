@@ -50,19 +50,21 @@ jobs:
           
         
 
-          git clone -b gh-pages git@github.com:akankshar05/working_ci.git
+          git clone -b gh-pages git@github.com:akankshar05/working_ci.git gh-pages
       - name: "3"
         run: |
           
-          cp -r ./working_ci/* ./$previous_folder
+          cp -r ./gh-pages/* ./$previous_folder
+      - name: "4"
+        run: |
           echo "4"
           rm -r working_ci
           echo "5"
 
-          git clone -b daily_reports git@github.com:akankshar05/working_ci.git
+          git clone -b daily_reports git@github.com:akankshar05/working_ci.git daily_reports
           echo "6"
 
-          cp -r ./$previous_folder ./working_ci/
+          cp -r ./$previous_folder ./daily_reports/
           echo "7"
           cd working_ci
           echo "8"
